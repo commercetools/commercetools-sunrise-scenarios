@@ -1,5 +1,5 @@
 libraryDependencies ++=
-  "info.cukes" % "cucumber-java8" % "1.2.4" ::
+    "info.cukes" % "cucumber-java8" % "1.2.4" ::
     "org.assertj" % "assertj-core" % "3.1.0" ::
     "org.fluentlenium" % "fluentlenium-core" % "0.10.3" ::
     "org.seleniumhq.selenium" % "selenium-htmlunit-driver" % "2.47.1" ::

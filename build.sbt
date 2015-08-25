@@ -5,6 +5,7 @@ libraryDependencies ++=
     "org.seleniumhq.selenium" % "selenium-htmlunit-driver" % "2.47.1" ::
     "org.apache.httpcomponents" % "httpclient" % "4.4" :: //optional dependency of htmlunit, 4.5 not compatible with selenium 2.47.1
     "com.typesafe" % "config" % "1.3.0" ::
-    Nil
-
+    "org.fluentlenium" % "fluentlenium-cucumber" % "0.10.3" ::
+    Nil 
+    
 mainClass := Some("io.commercetools.sunrise.steps.Main")

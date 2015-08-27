@@ -20,7 +20,7 @@ public class SeeSizeGuide extends FluentCucumberTest implements En {
 	}
 
 	public SeeSizeGuide() {
-		Before(()-> {
+		Before(() -> {
 			initFluent();
 			initTest();
 		});
@@ -34,11 +34,11 @@ public class SeeSizeGuide extends FluentCucumberTest implements En {
 			pdp.clickOnSizeGuideButton();
 		});
 
-		Then("I should see a modal window containing international size conversions", ()-> {
+		Then("I should see a modal window containing international size conversions", () -> {
 			pdp.seeSizeGuideModal();
 		});
 
-		After(()-> {
+		After(() -> {
 			quit();
 		});
 

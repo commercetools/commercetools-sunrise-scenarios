@@ -13,7 +13,7 @@ public class Main {
         usedArgsList.add("io.commercetools.sunrise.steps");
         //Ignores all scenarios or features tagged with @ignore
         usedArgsList.add("--tags");
-        usedArgsList.add("~@ignore");
+        usedArgsList.add("~@wip");
         if (args.length == 0) {
             usedArgsList.add("classpath:features");
         }

@@ -1,4 +1,4 @@
-@ignore
+@wip
 Feature: home page
 
   Scenario: home page will be opened

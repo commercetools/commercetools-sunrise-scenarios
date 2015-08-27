@@ -1,6 +1,8 @@
 package io.commercetools.sunrise.pages;
 import org.fluentlenium.core.Fluent;
 import org.fluentlenium.core.FluentPage;
+import org.fluentlenium.core.domain.FluentWebElement;
+
 import com.typesafe.config.ConfigFactory;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -39,12 +41,11 @@ public class ProductDetailPage extends FluentPage {
 	}
 
 	public void clickOnSizeGuideButton() {
-		find("#pdp-size-guide").first().click();
+	    findFirst(".size-guide-li").findFirst("a").click();
 	}
 
 	public void seeSizeGuideModal() {
-		assertThat(findFirst("#size-guide").getAttribute("aria-hidden")).isNotNull();
-		assertThat(findFirst("#size-guide").getAttribute("aria-hidden")).isEqualTo("false");
+		assertThat(findFirst("#size-guide").isDisplayed()).isTrue();
 	}
 
 	@Override

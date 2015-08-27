@@ -1,0 +1,16 @@
+{
+    "name": "commercetools/sunrise-scenarios",
+    "license": "MIT",
+    "description": "Sunrise cucumber scenarios",
+    "homepage": "https://github.com/sphereio/sphere-sunrise-scenarios",
+    "support": {
+        "email": "support@sphere.io",
+        "forum": "http://support.sphere.io",
+        "issues": "https://github.com/sphereio/sphere-sunrise-scenarios/issues"
+    },
+    "keywords": [
+        "Sunrise",
+        "SPHERE.IO"
+    ],
+    "require": {}
+}

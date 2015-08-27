@@ -5,7 +5,7 @@ import com.typesafe.config.ConfigFactory;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class PDP extends FluentPage {
+public class ProductDetailPage extends FluentPage {
 	private String productUrl;
 	private final String RANDOM_PRODUCT_URL = "/en/michael-kors-shopper-30H4GBFT6L-red-A0E2000000027AN.html";
 

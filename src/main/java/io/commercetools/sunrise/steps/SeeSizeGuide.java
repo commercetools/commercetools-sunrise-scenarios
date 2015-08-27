@@ -1,6 +1,6 @@
 package io.commercetools.sunrise.steps;
 
-import io.commercetools.sunrise.pages.PDP;
+import io.commercetools.sunrise.pages.ProductDetailPage;
 import org.fluentlenium.core.annotation.Page;
 import org.fluentlenium.cucumber.adapter.FluentCucumberTest;
 import org.fluentlenium.cucumber.adapter.util.SharedDriver;
@@ -12,7 +12,7 @@ import cucumber.api.java8.En;
 public class SeeSizeGuide extends FluentCucumberTest implements En {
 
 	@Page
-	private PDP pdp;
+	private ProductDetailPage pdp;
 
 	@Override
 	public WebDriver getDefaultDriver() {

@@ -21,8 +21,8 @@ public class SeeSizeGuide extends FluentCucumberTest implements En {
 
 	public SeeSizeGuide() {
 		Before(()-> {
-			this.initFluent();
-			this.initTest();
+			initFluent();
+			initTest();
 		});
 
 		Given("I am on a random product's pdp", () -> {
@@ -39,7 +39,7 @@ public class SeeSizeGuide extends FluentCucumberTest implements En {
 		});
 
 		After(()-> {
-			this.quit();
+			quit();
 		});
 
 	}

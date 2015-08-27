@@ -11,7 +11,7 @@ public class Main {
         final List<String> usedArgsList = new LinkedList<>();
         usedArgsList.add("--glue");
         usedArgsList.add("io.commercetools.sunrise.steps");
-        //Ignores all scenarios or features tagged with @ignore
+        //Ignores all scenarios or features tagged with @wip
         usedArgsList.add("--tags");
         usedArgsList.add("~@wip");
         if (args.length == 0) {

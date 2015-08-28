@@ -175,6 +175,14 @@ public class ProductDetailPage extends FluentPage {
         sizeSelect.findFirst("option").click();
     }
 
+    public void clickAddToBag() {
+        addToBagButton.click();
+    }
+
+    public void bagQuantityIsSetTo(Integer expectedQuantity) {
+        assertThat(shoppingBagQantityLabel.getValue()).isEqualTo(expectedQuantity.toString());
+    }
+
     @Override
     public String getUrl() {
         return baseUrl() + getProductUrl();

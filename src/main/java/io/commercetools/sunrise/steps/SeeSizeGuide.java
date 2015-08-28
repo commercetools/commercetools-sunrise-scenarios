@@ -13,36 +13,36 @@ import cucumber.api.java8.En;
 @SharedDriver(type = SharedDriver.SharedType.PER_SCENARIO)
 public class SeeSizeGuide extends FluentCucumberTest implements En {
 
-	@Page
-	private ProductDetailPage pdp;
+    @Page
+    private ProductDetailPage pdp;
 
-	@Override
-	public WebDriver getDefaultDriver() {
-	    return new FirefoxDriver();
-	}
+    @Override
+    public WebDriver getDefaultDriver() {
+        return new FirefoxDriver();
+    }
 
-	public SeeSizeGuide() {
-		Before(() -> {
-			initFluent();
-			initTest();
-		});
-
-		Given("I am on a random product's pdp", () -> {
-			pdp.goToRandomProduct(this);
-			pdp.isAt();
+    public SeeSizeGuide() {
+        Before(() -> {
+            initFluent();
+            initTest();
         });
 
-		When("I click on the size guide button", () -> {
-			pdp.clickOnSizeGuideButton();
-		});
+        Given("I am on a random product's pdp", () -> {
+            pdp.goToRandomProduct(this);
+            pdp.isAt();
+        });
 
-		Then("I should see a modal window containing international size conversions", () -> {
-			pdp.seeSizeGuideModal();
-		});
+        When("I click on the size guide button", () -> {
+            pdp.clickOnSizeGuideButton();
+        });
 
-		After(() -> {
-			quit();
-		});
+        Then("I should see a modal window containing international size conversions", () -> {
+            pdp.seeSizeGuideModal();
+        });
 
-	}
+        After(() -> {
+            quit();
+        });
+
+    }
 }

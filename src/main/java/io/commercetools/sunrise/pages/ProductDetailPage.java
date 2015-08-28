@@ -44,7 +44,10 @@ public class ProductDetailPage extends FluentPage {
     private FluentWebElement signInLink;
 
     @FindBy(css = "a.link-your-bag")
-    private FluentWebElement shoppingBagLink;
+    private FluentWebElement shoppingCartLink;
+
+    @FindBy(css = "span.cart-item-number")
+    private FluentWebElement shoppingCartSizeLabel;
 
     // Navigation Elements
 
@@ -93,7 +96,7 @@ public class ProductDetailPage extends FluentPage {
     private FluentWebElement quantitySelect;
 
     @FindBy(css = "#pdp-add-to-bag-btn")
-    private FluentWebElement addToBagButton;
+    private FluentWebElement addToCartButton;
 
     @FindBy(css = "#pdp-add-to-wishlist-btn")
     private FluentWebElement addToWishListButton;
@@ -109,6 +112,9 @@ public class ProductDetailPage extends FluentPage {
 
     @FindBy(css = "#pdp-wishlist-view-btn")
     private FluentWebElement wishListButton;
+
+    @FindBy(css = "div.wishlist-number")
+    private FluentWebElement wishListQuantityDiv;
 
     // Reviews Section Elements
 

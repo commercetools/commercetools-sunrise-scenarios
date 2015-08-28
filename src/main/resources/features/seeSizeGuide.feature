@@ -5,6 +5,6 @@ Feature: Product Size Guide
     
   @wip  
   Scenario: I can see the size guide for a product
-    Given I am on a random product's pdp
+    Given I am on a product page
     When I click on the size guide button
     Then I should see a modal window containing international size conversions

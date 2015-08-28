@@ -27,7 +27,7 @@ public class SeeSizeGuide extends FluentCucumberTest implements En {
             initTest();
         });
 
-        Given("I am on a random product's pdp", () -> {
+        Given("I am on a product page", () -> {
             pdp.goToRandomProduct(this);
             pdp.isAt();
         });

@@ -1,11 +1,13 @@
 package io.commercetools.sunrise.steps;
 
 import io.commercetools.sunrise.pages.ProductDetailPage;
+
 import org.fluentlenium.core.annotation.Page;
 import org.fluentlenium.cucumber.adapter.FluentCucumberTest;
 import org.fluentlenium.cucumber.adapter.util.SharedDriver;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
 import cucumber.api.java8.En;
 
 @SharedDriver(type = SharedDriver.SharedType.PER_SCENARIO)
@@ -16,7 +18,7 @@ public class SeeSizeGuide extends FluentCucumberTest implements En {
 
 	@Override
 	public WebDriver getDefaultDriver() {
-		return new HtmlUnitDriver();
+	    return new FirefoxDriver();
 	}
 
 	public SeeSizeGuide() {

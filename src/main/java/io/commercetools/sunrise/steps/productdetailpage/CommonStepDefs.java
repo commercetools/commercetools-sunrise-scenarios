@@ -1,4 +1,4 @@
-package io.commercetools.sunrise.steps.ProductDetailPage;
+package io.commercetools.sunrise.steps.productdetailpage;
 
 import io.commercetools.sunrise.pages.ProductDetailPage;
 

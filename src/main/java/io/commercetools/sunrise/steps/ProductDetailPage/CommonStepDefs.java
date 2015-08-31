@@ -1,4 +1,4 @@
-package io.commercetools.sunrise.steps;
+package io.commercetools.sunrise.steps.ProductDetailPage;
 
 import io.commercetools.sunrise.pages.ProductDetailPage;
 
@@ -11,8 +11,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import cucumber.api.java8.En;
 
 @SharedDriver(type = SharedDriver.SharedType.PER_SCENARIO)
-public class NavigationStepDefs extends FluentCucumberTest implements En {
-
+public class CommonStepDefs extends FluentCucumberTest implements En {
     @Page
     public static ProductDetailPage productDetailPage;
 
@@ -21,7 +20,7 @@ public class NavigationStepDefs extends FluentCucumberTest implements En {
         return new FirefoxDriver();
     }
 
-    public NavigationStepDefs() {
+    public CommonStepDefs () {
         Before(() -> {
             initFluent();
             initTest();
@@ -35,6 +34,5 @@ public class NavigationStepDefs extends FluentCucumberTest implements En {
         After(() -> {
             quit();
         });
-
     }
 }

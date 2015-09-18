@@ -7,7 +7,7 @@ cache:
 addons:
   sauce_connect: true
 before_script:
-- composer install -o
+  - composer install -o
 script:
 - vendor/bin/behat -p live-sauce
 env:

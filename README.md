@@ -26,7 +26,6 @@ Cucumber tests for Sunrise
 
 * `vendor/bin/behat`
 
-
 ### Profiles
 
 There are some profiles predefined for different usages:
@@ -47,4 +46,4 @@ The sunrise jvm profile tries to access a local installed sunrise at http://127.
 
 The sunrise php profile tries to access a local installed sunrise at http://sunrise.commercetools.de
 
-* `vendor/bin/behat -p sunrive`
+* `vendor/bin/behat -p live`

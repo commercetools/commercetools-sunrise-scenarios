@@ -1,0 +1,74 @@
+# behat.yml
+default:
+  translation:
+    locale: en
+  suites:
+    default:
+      paths:
+        - %paths.base%/features
+        - %paths.base%/src/main/resources/features
+      contexts:
+        - Commercetools\Sunrise\BehatContext
+  extensions:
+    Behat\MinkExtension:
+      base_url: http://127.0.0.1:8001
+      sessions:
+        default:
+          selenium2: ~
+        sauce:
+          sauce_labs:
+            capabilities:
+              selenium-version: 2.44.0
+              version: 34
+              browser: Firefox
+              platform: "Linux"
+              max-duration: 3600
+              record-screenshots: true
+              custom-data:
+                foo: bar
+php:
+  extensions:
+    Behat\MinkExtension:
+      base_url: http://127.0.0.1:8001
+
+jvm:
+  extensions:
+    Behat\MinkExtension:
+      base_url: http://127.0.0.1:9000
+
+live:
+  extensions:
+    Behat\MinkExtension:
+      base_url: http://sunrise.commercetools.de
+
+php-sauce:
+  extensions:
+    Behat\MinkExtension:
+      base_url: http://127.0.0.1:8001
+      default_session: sauce
+      javascript_session: sauce
+      sessions:
+        sauce:
+          sauce_labs:
+            capabilities: { "name": "Sunrise PHP"}
+jvm-sauce:
+  extensions:
+    Behat\MinkExtension:
+      base_url: http://127.0.0.1:9000
+      default_session: sauce
+      javascript_session: sauce
+      sessions:
+        sauce:
+          sauce_labs:
+            capabilities: { "name": "Sunrise JVM"}
+
+live-sauce:
+  extensions:
+    Behat\MinkExtension:
+      base_url: https://sunrise.commercetools.de/
+      default_session: sauce
+      javascript_session: sauce
+      sessions:
+        sauce:
+          sauce_labs:
+            capabilities: { "name": "Sunrise Live"}

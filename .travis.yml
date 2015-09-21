@@ -9,6 +9,7 @@ addons:
 before_script:
   - composer install -o
 script:
+- vendor/bin/behat -p staging-sauce
 - vendor/bin/behat -p live-sauce
 env:
   global:

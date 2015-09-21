@@ -19,6 +19,7 @@ default:
           selenium2: ~
         sauce:
           sauce_labs:
+            connect: true
             capabilities:
               selenium-version: 2.44.0
               version: 34
@@ -26,6 +27,8 @@ default:
               platform: "Linux"
               max-duration: 3600
               record-screenshots: true
+              custom-data:
+                foo: bar
 php:
   extensions:
     Behat\MinkExtension:
@@ -35,6 +38,16 @@ jvm:
   extensions:
     Behat\MinkExtension:
       base_url: http://127.0.0.1:9000
+  suites:
+    default:
+      contexts:
+        - Commercetools\Sunrise\BehatContext:
+            homepage: /en/home
+
+staging:
+  extensions:
+    Behat\MinkExtension:
+      base_url: https://sphere-sunrise-dmexco.herokuapp.com/
   suites:
     default:
       contexts:
@@ -78,6 +91,23 @@ jvm-sauce:
         - Commercetools\Sunrise\BehatContext:
             homepage: /en/home
 
+staging-sauce:
+  extensions:
+    Behat\MinkExtension:
+      base_url: https://sphere-sunrise-dmexco.herokuapp.com/
+      default_session: sauce
+      javascript_session: sauce
+      sessions:
+        sauce:
+          sauce_labs:
+            connect: false
+            capabilities: { "name": "Sunrise Staging"}
+  suites:
+    default:
+      contexts:
+        - Commercetools\Sunrise\BehatContext:
+            homepage: /en/home
+
 live-sauce:
   extensions:
     Behat\MinkExtension:
@@ -87,6 +117,7 @@ live-sauce:
       sessions:
         sauce:
           sauce_labs:
+            connect: false
             capabilities: { "name": "Sunrise Live"}
   suites:
     default:

@@ -48,7 +48,7 @@ class BehatContext extends MinkContext implements SnippetAcceptingContext
     public function theParameterShouldBe($name, $value)
     {
         $request = $this->getRequestByUri($this->getSession()->getCurrentUrl());
-        assertSame($value, $request->get($name));
+        \PHPUnit_Framework_Assert::assertSame($value, $request->get($name));
     }
 
     /**
@@ -57,7 +57,7 @@ class BehatContext extends MinkContext implements SnippetAcceptingContext
     public function theParameterShouldNotBe($name, $value)
     {
         $request = $this->getRequestByUri($this->getSession()->getCurrentUrl());
-        assertNotSame($value, $request->get($name));
+        \PHPUnit_Framework_Assert::assertNotSame($value, $request->get($name));
     }
 
     protected function getRequestByUri($uri)

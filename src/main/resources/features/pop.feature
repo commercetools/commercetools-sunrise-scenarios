@@ -1,15 +1,15 @@
 Feature: Product Overview Page
 
   Scenario: open category
-    Given I navigate to "/en/home"
-    When I follow "plus content"
-    Then I should be on "/en/new"
-    And the ".breadcrumb" element should contain "New"
+    Given I am on the homepage
+    When I click "Women" at navigation
+    Then I should be on "/en/women"
+    And the ".breadcrumb" element should contain "Women"
 
   Scenario: open a product
     Given I go to "/en/search"
-    When I follow "EUR"
-    Then the url should match "html$"
+    When I follow a product
+    Then I should be on a product page
 
   Scenario: sort by price asc
     Given I go to "/en/search"

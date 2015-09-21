@@ -1,16 +1,16 @@
 Feature: Cart
-  Background: open a product
+  Background: add a product to the cart
     Given I start a new session
     And I go to "/en/search"
-    When I follow "EUR"
-    Then the url should match "html$"
+    When I follow a product
+    Then I should be on a product page
     When I add the product to cart
-    Then the url should match "html$"
-    When I follow the ".list-item-bag .link-your-bag" link
+    Then I should be on a product page
+    When I follow the mini cart
     Then I should be on "/en/cart"
 
   Scenario: Add item to cart
-    Then the ".list-item-bag .cart-item-number" element should contain "1"
+    Then the mini cart element should contain "1"
 
   Scenario: change quantity
     And I should see an ".input-number-increment" element
@@ -21,8 +21,8 @@ Feature: Cart
 
   Scenario: remove line item
     When I press "line-item-delete-button"
-    Then the ".list-item-bag .cart-item-number" element should contain "0"
+    Then the mini cart element should contain "0"
 
   Scenario: continue shopping
     When I press "cart-continueshopping-btn-xs"
-    Then I should be on "/en/home"
+    Then I should be on the homepage

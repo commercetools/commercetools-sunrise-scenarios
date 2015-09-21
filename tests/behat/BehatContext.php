@@ -2,7 +2,9 @@
 
 namespace Commercetools\Sunrise;
 
+use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Behat\Context\SnippetAcceptingContext;
+use Behat\Mink\Element\NodeElement;
 use Behat\MinkExtension\Context\MinkContext;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -13,6 +15,7 @@ require_once __DIR__ . '/../../vendor/phpunit/phpunit/src/Framework/Assert/Funct
  */
 class BehatContext extends MinkContext implements SnippetAcceptingContext
 {
+    protected $homepage;
     /**
      * Initializes context.
      *
@@ -20,8 +23,9 @@ class BehatContext extends MinkContext implements SnippetAcceptingContext
      * You can also pass arbitrary arguments to the
      * context constructor through behat.yml.
      */
-    public function __construct()
+    public function __construct($homepage = '/')
     {
+        $this->homepage = $homepage;
     }
 
     /**
@@ -106,5 +110,68 @@ class BehatContext extends MinkContext implements SnippetAcceptingContext
     {
         $toWait = $seconds * 1000;
         $this->getSession()->wait($toWait);
+    }
+
+    /**
+     * @When I follow a product
+     */
+    public function iFollowAProduct()
+    {
+        $this->clickLink('EUR');
+    }
+
+    /**
+     * @Then I should be on a product page
+     */
+    public function iShouldBeOnAProductPage()
+    {
+        $this->assertUrlRegExp('"html$"');
+    }
+
+    /**
+     * @When I follow the mini cart
+     */
+    public function iFollowTheMiniCart()
+    {
+        $this->clickPatternElement('.list-item-bag .link-your-bag');
+    }
+
+    /**
+     * @Then the mini cart element should contain :arg1
+     */
+    public function theMiniCartElementShouldContain($arg1)
+    {
+        $this->assertElementContains('.list-item-bag .cart-item-number', $arg1);
+    }
+
+    public function assertHomepage()
+    {
+        $homepage = $this->homepage;
+        if (!is_null($homepage)) {
+            $this->assertPageAddress($homepage);
+            return;
+        }
+
+        parent::assertHomepage();
+    }
+
+    /**
+     * @When I click :arg1 at navigation
+     */
+    public function iClickAtNavigation($arg1)
+    {
+        $elements = $this->getSession()->getPage()->findAll('named', array(
+            'link', $this->getSession()->getSelectorsHandler()->xpathLiteral('plus content'),
+        ));
+        /**
+         * @var NodeElement $element
+         */
+        $arg1 = mb_strtolower($arg1);
+        foreach ($elements as $element) {
+            if (strpos(mb_strtolower($element->getText()), $arg1) !== false) {
+                $element->click();
+                break;
+            }
+        }
     }
 }

@@ -8,8 +8,6 @@ use Behat\Mink\Element\NodeElement;
 use Behat\MinkExtension\Context\MinkContext;
 use Symfony\Component\HttpFoundation\Request;
 
-require_once __DIR__ . '/../../vendor/phpunit/phpunit/src/Framework/Assert/Functions.php';
-
 /**
  * @author @ct-jensschulze <jens.schulze@commercetools.de>
  */

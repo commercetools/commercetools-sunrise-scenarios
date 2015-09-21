@@ -9,9 +9,11 @@ addons:
 before_script:
   - composer install -o
 script:
-- vendor/bin/behat -p staging-sauce
-- vendor/bin/behat -p live-sauce
+- vendor/bin/behat -p $BEHAT_PROFILE
 env:
+  matrix:
+    - BEHAT_PROFILE=staging-sauce
+    - BEHAT_PROFILE=live-sauce
   global:
     #SAUCELABS
     - secure: Ai9RBXrPo5TvFu+2163oTNRShC2JbD1U1Q/VvL4QA4zkAx9srFsve6qHWCBQ04g1ehzsE+oJpC4XtDolIB/AQXVrKVX6Rz+VbT8rGjacr/WvWECykinfgOE73RcfMRRHfymgZQ+LVsDykN5/sH4VvQmCoUCfIX4k/yLl+XuBcN5bizIX1sDUwCGQ4qT05TSLyW6aOWz7CGaUE66oN5/1ZzguGHhoyPfvBfvaxVznBCaipd84sy422jEH/NGJAwgfJSPhjVI+LG8rJX5wZOYx9nAf5FN/TTuKcQt+3HLmDS59wof985NS+6jr2OgB/pBmn5bOkJNI8jR8/OIM5uHvbZu/LefnKteZLJRczyFWzc8hO9tVWF2sBPiLmTgPn4ZPQlkZQcpkTpLouAG1zZXL+D6HHenzauMhG0FuJ371N6hJF0aY4RgIH0ZlmabsnYur0csiItGWIkqj/hamYMffXVhpO3Pg0htGhTwkDwJefh76VueG3AzYpcogrcv8gklfmOPikXc6W+FsJsBfn5oWw5Y4t1PhWJzJh00Mh8KzfJR0jkt9J4nrS2mtYmDi1fv+8k5USedbY4/pJZPZthLKHOOGeAKJJvCC6S5qHgqrM5TOjku21PpqRRq/rSKNS6Nfob9eL8tYLankrx6IW0YGNoreQnquRdAE+BWYJ/O+edg=

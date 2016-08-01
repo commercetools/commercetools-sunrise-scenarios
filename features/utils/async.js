@@ -1,8 +1,8 @@
-'use strict'
+'use strict';
 
 module.exports = {
-  serial, promisify
-}
+    serial, promisify
+};
 
 /**
  * Take an iterable of Promises and invoke them serially, otherwise identical
@@ -11,25 +11,25 @@ module.exports = {
  * @param {Promise[]} promises
  * @return {Promise}
  */
-function serial (promises) {
-  const results = []
+function serial(promises) {
+    const results = [];
 
-  return promises
-  .reduce((chain, promise) =>
-    chain.then(result => {
-      results.push(result)
-      return promise
-    }), Promise.resolve())
-  .then(result => {
-    results.push(result)
-    results.shift()
-    return results
-  })
+    return promises
+        .reduce((chain, promise) =>
+            chain.then(result => {
+                results.push(result);
+                return promise
+            }), Promise.resolve())
+        .then(result => {
+            results.push(result);
+            results.shift();
+            return results;
+        })
 }
 
 
-function promisify (fn) {
-  return arg => new Promise((resolve, reject) =>
-    fn(arg, (error, result) => error ? reject(error) : resolve(result))
-  )
+function promisify(fn) {
+    return arg => new Promise((resolve, reject) =>
+        fn(arg, (error, result) => error ? reject(error) : resolve(result))
+    );
 }

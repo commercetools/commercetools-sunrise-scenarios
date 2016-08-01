@@ -1,6 +1,6 @@
 'use strict'
 
-const crypto = require('crypto')
+const crypto = require('crypto');
 
 module.exports = {
   unique
@@ -12,5 +12,5 @@ function unique () {
 
 function range (count) {
   const num = parseInt(count, 10);
-  return Array(num).fill(null);
+  return new Array(num).fill(null);
 }

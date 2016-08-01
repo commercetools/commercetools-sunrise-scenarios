@@ -8,13 +8,13 @@ Cucumber tests for Sunrise
 $ npm i
 
 # test locally using firefox
-$ npm run test:features
+$ npm run test
 
 # test a specific feature
-$ npm run test:features features/name-of-feature.feature
+$ npm run test features/name-of-feature.feature
 
 # to test a specific scenario in a feature, apply the line number where the scenario is defined
-$ npm run test:features features/name-of-feature.feature:9
+$ npm run test features/name-of-feature.feature:9
 
 ```
 

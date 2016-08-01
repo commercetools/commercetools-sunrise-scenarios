@@ -3,12 +3,10 @@
   "version": "0.1.0",
   "description": "Test suite for the CTP Sunrise application",
   "scripts": {
-    "test": "npm run lint && NODE_ENV=test mocha --compilers js:babel-register --recursive test/*.spec.js",
-    "test:watch": "npm run test -- --watch",
-    "test:features": "./scripts/features_run",
-    "test:features:ci": "NODE_TLS_REJECT_UNAUTHORIZED=0 NODE_ENV=ci cucumber.js",
-    "test:features:local:chrome": "NODE_BROWSER=chrome ./scripts/features_run",
-    "test:features:local:ci": "NODE_TLS_REJECT_UNAUTHORIZED=0 NODE_ENV=ci ./scripts/features_run_docker"
+    "test": "./scripts/features_run",
+    "test:ci": "NODE_TLS_REJECT_UNAUTHORIZED=0 NODE_ENV=ci cucumber.js",
+    "test:local:chrome": "NODE_BROWSER=chrome ./scripts/features_run",
+    "test:local:ci": "NODE_TLS_REJECT_UNAUTHORIZED=0 NODE_ENV=ci ./scripts/features_run_docker"
   },
   "license": "MIT",
   "repository": {

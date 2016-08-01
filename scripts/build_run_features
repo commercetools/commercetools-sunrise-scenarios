@@ -1,0 +1,27 @@
+#!/bin/bash -e
+
+before() {
+  echo "Ensure no selenium container is running"
+  docker stop seleniumff && docker rm seleniumff || true
+
+  echo "Start selenium firefox container in background..."
+  docker run --name seleniumff -d selenium/standalone-firefox-debug
+}
+
+after() {
+  echo "Stop selenium firefox container..."
+  docker stop seleniumff && docker rm seleniumff
+}
+
+before
+trap after EXIT
+
+### Used in TC pipeline
+cmd="docker run --sig-proxy=true --rm -v $(pwd):/src -w /src node:4"
+cmdLink="docker run --sig-proxy=true --rm --link seleniumff:seleniumff -v $(pwd):/src -w /src node:4"
+
+echo "Install dependencies..."
+eval "$cmd sh -c 'npm config set registry http://registry.npmjs.org/ && npm i --unsafe-perm --no-optional --quiet'"
+echo "Run features..."
+eval "$cmd npm run lint:features"
+eval "$cmdLink npm run test:features:ci"

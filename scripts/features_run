@@ -1,0 +1,13 @@
+#!/bin/bash -e
+
+# Run tests with selenium running locally
+
+cleanup() {
+  echo "Ensure no selenium process is running"
+  pkill -f selenium-standalone || true
+}
+
+cleanup
+trap cleanup EXIT
+
+$(npm bin)/cucumber.js $1

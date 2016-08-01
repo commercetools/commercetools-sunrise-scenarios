@@ -1,8 +1,0 @@
-#!/bin/bash -e
-
-### Used in TC pipeline
-cmd="docker run --sig-proxy=true --rm -v $(pwd):/src -w /src node:4"
-
-rm -rf node_modules
-eval "$cmd sh -c 'npm config set registry http://registry.npmjs.org/ && npm i --unsafe-perm --no-optional --quiet'"
-eval "$cmd npm run test"

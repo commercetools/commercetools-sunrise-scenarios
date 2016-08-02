@@ -8,6 +8,6 @@ Feature: home page
     Given I navigate to "/"
     And I click "View all new products"
     Then I see in current url "/en/new"
-    Then within "#form-filter-products .category-active"
-    Then I see "NEW"
-    Then end within
+    And within "#form-filter-products .category-active"
+    And I see "NEW"
+    And end within

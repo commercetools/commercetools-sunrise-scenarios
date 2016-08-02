@@ -10,4 +10,4 @@ cleanup() {
 cleanup
 trap cleanup EXIT
 
-$(npm bin)/cucumber.js $1
+$(npm bin)/cucumber.js "$@"

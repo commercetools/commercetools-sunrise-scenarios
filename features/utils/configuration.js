@@ -11,7 +11,7 @@ const isRemote = env === 'remote';
 const isCI = env === 'ci';
 const browserName = process.env.NODE_BROWSER || 'firefox';
 
-const testingUrl = 'http://localhost';
+const testingUrl = (process.env.BASE_URL || 'http://localhost:8000');
 const host = isCI ? (process.env.HOST || 'seleniumff') : 'localhost';
 
 
@@ -32,8 +32,7 @@ module.exports = {
 
     webdriverOptions: {
         outputDir: 'output',
-        baseUrl: (isRemote || isCI) ?
-            testingUrl : 'http://localhost:8001',
+        baseUrl: testingUrl,
         desiredCapabilities: {
             browserName: browserName
         }

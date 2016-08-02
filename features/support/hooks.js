@@ -31,7 +31,6 @@ module.exports = function hooks() {
                 ? seleniumInstall(configuration.seleniumOptions)
                 .then(() => {
                     if (seleniumStarted) return void 0;
-
                     seleniumStarted = true;
                     return seleniumStart(configuration.seleniumOptions);
                 })
@@ -42,12 +41,11 @@ module.exports = function hooks() {
                     return browser;
                 }),
         ])
-
-            .then(results => {
-                self.browser = browser;
-                self.login = {email, password};
-                self.data = results[1]
-            })
+        .then(results => {
+            self.browser = browser;
+            self.login = {email, password};
+            self.data = results[1]
+        })
     });
 
     this.After(function (scenario) {

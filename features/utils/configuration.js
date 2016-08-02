@@ -31,6 +31,7 @@ module.exports = {
     },
 
     webdriverOptions: {
+        outputDir: 'output',
         baseUrl: (isRemote || isCI) ?
             testingUrl : 'http://localhost:8001',
         desiredCapabilities: {

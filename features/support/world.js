@@ -1,8 +1,8 @@
 'use strict';
 
-let webdriverio;
 let withinStore = {};
 
+const webdriver = require('webdriverio');
 const configuration = require('../utils/configuration');
 const stringIncludes = require('../../lib/assert/include').includes;
 const urlEquals = require('../../lib/assert/equal').urlEquals;
@@ -13,6 +13,7 @@ const xpathLocator = require('../../lib/utils').xpathLocator;
 const fileExists = require('../../lib/utils').fileExists;
 const assert = require('assert');
 const path = require('path');
+let debug = require('../../lib/output').debug;
 
 function World() {
     // Everything defined in `this` instance will be available
@@ -22,6 +23,18 @@ function World() {
     this.fastTimeout = 1 * 1000;
 
     this.browser = null;
+    this.options = {
+        waitforTimeout: 1000, // ms
+        desiredCapabilities: {},
+        restart: true
+    };
+
+    // override defaults with config
+    Object.assign(this.options, configuration.webdriverOptions);
+
+    this.options.baseUrl = this.options.url || this.options.baseUrl;
+    this.options.desiredCapabilities.browserName = this.options.browser || this.options.desiredCapabilities.browserName;
+    this.options.waitforTimeout /= 1000; // convert to seconds
 
     this._beforeSuite = () => {
         if (!this.options.restart) {
@@ -32,11 +45,10 @@ function World() {
 
     this._startBrowser = () => {
         if (this.options.multiremote) {
-            this.browser = webdriverio.multiremote(this.options.multiremote);
+            this.browser = webdriver.multiremote(this.options.multiremote);
         } else {
-            this.browser = webdriverio.remote(this.options).init();
+            this.browser = webdriver.remote(this.options).init();
         }
-
         if (this.options.windowSize === 'maximize') {
             this.browser.windowHandleMaximize(false);
         }
@@ -55,7 +67,7 @@ function World() {
     };
 
     this._after = () => {
-        if (this.options.restart) return this.browser.end();
+        if (this.options.restart) return this.browser.close();
         this.debugSection('Session', 'cleaning cookies and localStorage');
         return this.browser.execute('localStorage.clear();').then(() => {
             return this.browser.deleteCookie();
@@ -63,11 +75,11 @@ function World() {
     };
 
     this._afterSuite = () => {
-        if (!this.options.restart) return this.browser.end();
+        if (!this.options.restart) return this.browser.close();
     };
 
     this._failed = (test) => {
-        let fileName = test.title.replace(/ /g, '_') + '.failed.png';
+        let fileName = test.getName().replace(/ /g, '_') + '.failed.png';
         return this.saveScreenshot(fileName);
     };
 
@@ -579,7 +591,7 @@ function World() {
      * {{> ../webapi/saveScreenshot}}
      */
     this.saveScreenshot = (fileName) => {
-        let outputFile = path.join(global.output_dir, fileName);
+        let outputFile = path.join(path.resolve(this.options.outputDir), fileName);
         this.debug('Screenshot has been saved to ' + outputFile);
         return this.browser.saveScreenshot(outputFile);
     };
@@ -790,6 +802,14 @@ function World() {
     this.switchTo = (locator) => {
         locator = locator || null;
         return this.browser.frame(locator);
+    };
+
+    this.debug = (msg) => {
+        debug(msg);
+    };
+
+    this.debugSection = (section, msg) => {
+        debug(`[${section}] ${msg}`);
     };
 }
 

@@ -2,7 +2,6 @@
 
 const colors = require('colors/safe');
 const selenium = require('selenium-standalone');
-const webdriver = require('webdriverio');
 const unique = require('../utils/randoms').unique;
 const promisify = require('../utils/async').promisify;
 const configuration = require('../utils/configuration');
@@ -39,8 +38,7 @@ module.exports = function hooks() {
                 : Promise.resolve())
 
                 .then(() => {
-                    browser = webdriver.remote(configuration.webdriverOptions).init();
-                    console.log(colors.yellow('Driver created.'));
+                    browser = this._before();
                     return browser;
                 }),
         ])
@@ -52,12 +50,12 @@ module.exports = function hooks() {
             })
     });
 
-    this.After(function (/*scenario*/) {
+    this.After(function (scenario) {
         this._withinEnd();
 
-        if (browser)
-            return browser.close();
-
-        return void 0;
+        if (scenario.isFailed()) {
+            return this._failed(scenario).then(() => this._after());
+        }
+        return this._after();
     });
 };

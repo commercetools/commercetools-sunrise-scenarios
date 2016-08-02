@@ -4,6 +4,7 @@
   "description": "Test suite for the CTP Sunrise application",
   "scripts": {
     "test": "./scripts/features_run",
+    "test:remote": "NODE_ENV=remote cucumber.js",
     "test:ci": "NODE_TLS_REJECT_UNAUTHORIZED=0 NODE_ENV=ci cucumber.js",
     "test:local:chrome": "NODE_BROWSER=chrome ./scripts/features_run",
     "test:local:ci": "NODE_TLS_REJECT_UNAUTHORIZED=0 NODE_ENV=ci ./scripts/features_run_docker"

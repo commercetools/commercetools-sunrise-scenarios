@@ -9,8 +9,8 @@ addons:
 before_script:
 - npm install
 script:
-- npm test
+- npm run test:remote
 env:
   matrix:
-  - BASE_URL=http://sunrise.commercetools.de TEST_NAME=Sunrise Staging
-  - BASE_URL=http://sunrise.commercetools.com TEST_NAME=Sunrise Production
+  - BASE_URL=http://sunrise.commercetools.de TEST_NAME="Sunrise Staging"
+  - BASE_URL=http://sunrise.commercetools.com TEST_NAME="Sunrise Production"

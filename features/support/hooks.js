@@ -51,7 +51,7 @@ module.exports = function hooks() {
         this._withinEnd();
 
         if (scenario.isFailed()) {
-            return this._failed(scenario).then(() => this._after());
+            return this._failed(scenario).then(() => { return this._after() });
         }
         return this._after();
     });

@@ -13,23 +13,32 @@ const browserName = process.env.NODE_BROWSER || 'firefox';
 
 const testingUrl = (process.env.BASE_URL || 'http://localhost:8000');
 const host = isCI ? (process.env.HOST || 'seleniumff') : 'localhost';
+const port = 4444;
 
 const travisJob = process.env.TRAVIS_JOB_NUMBER;
 const travisBuild = process.env.TRAVIS_BUILD_NUMBER;
 
-let capabilities = {
-    name: (process.env.TEST_NAME || 'Sunrise'),
-    browserName: browserName
+let webdriverOptions = {
+    host: host,
+    port: port,
+    outputDir: 'output',
+    baseUrl: testingUrl,
+    desiredCapabilities: {
+        name: (process.env.TEST_NAME || 'Sunrise'),
+        browserName: browserName
+    }
 };
-if (travisJob && travisBuild) {
-    capabilities['tunnel-identifier'] = travisBuild;
-    capabilities.build = travisBuild
+
+if (isRemote && travisJob && travisBuild) {
+    webdriverOptions.user = process.env.SAUCE_USERNAME;
+    webdriverOptions.key = process.env.SAUCE_ACCESS_KEY;
+    webdriverOptions.port = 4445;
+    webdriverOptions.desiredCapabilities['tunnel-identifier'] = travisJob;
+    webdriverOptions.desiredCapabilities.build = travisBuild
 }
 
-module.exports = {
-    // This is used only for local development.
-    webdriverUrl: `http://${host}:4444/wd/hub`,
 
+module.exports = {
     seleniumOptions: {
         chrome: {
             // check for more recent versions of chrome driver here:
@@ -41,14 +50,9 @@ module.exports = {
         progressCb: progressCb
     },
 
-    webdriverOptions: {
-        host: `${host}`,
-        outputDir: 'output',
-        baseUrl: testingUrl,
-        desiredCapabilities: capabilities
-    },
+    webdriverOptions: webdriverOptions,
 
-    useLocalSelenium: isLocal || isRemote,
+    useLocalSelenium: isLocal,
 };
 
 function progressCb(total, progress, chunk) {

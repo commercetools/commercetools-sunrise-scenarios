@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+  - "6"
+cache:
+  directories:
+  - node_modules
+addons:
+  sauce_connect: true
+before_script:
+- npm install
+script:
+- npm test
+env:
+  matrix:
+  - BASE_URL=http://sunrise.commercetools.de TEST_NAME=Sunrise Staging
+  - BASE_URL=http://sunrise.commercetools.com TEST_NAME=Sunrise Production

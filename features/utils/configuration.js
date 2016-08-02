@@ -14,6 +14,17 @@ const browserName = process.env.NODE_BROWSER || 'firefox';
 const testingUrl = (process.env.BASE_URL || 'http://localhost:8000');
 const host = isCI ? (process.env.HOST || 'seleniumff') : 'localhost';
 
+const travisJob = process.env.TRAVIS_JOB_NUMBER;
+const travisBuild = process.env.TRAVIS_BUILD_NUMBER;
+
+let capabilities = {
+    name: (process.env.TEST_NAME || 'Sunrise'),
+    browserName: browserName
+};
+if (travisJob && travisBuild) {
+    capabilities['tunnel-identifier'] = travisBuild;
+    capabilities.build = travisBuild
+}
 
 module.exports = {
     // This is used only for local development.
@@ -34,9 +45,7 @@ module.exports = {
         host: `${host}`,
         outputDir: 'output',
         baseUrl: testingUrl,
-        desiredCapabilities: {
-            browserName: browserName
-        }
+        desiredCapabilities: capabilities
     },
 
     useLocalSelenium: isLocal || isRemote,

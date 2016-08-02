@@ -31,6 +31,7 @@ module.exports = {
     },
 
     webdriverOptions: {
+        host: `${host}`,
         outputDir: 'output',
         baseUrl: testingUrl,
         desiredCapabilities: {

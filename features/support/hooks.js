@@ -25,7 +25,6 @@ module.exports = function hooks() {
             firstName: 'Foo',
             lastName: 'Bar'
         };
-
         return Promise.all([
             (configuration.useLocalSelenium // Do not use this on CI
                 ? seleniumInstall(configuration.seleniumOptions)

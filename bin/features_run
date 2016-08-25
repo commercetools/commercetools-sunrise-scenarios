@@ -10,4 +10,15 @@ cleanup() {
 cleanup
 trap cleanup EXIT
 
-$(npm bin)/cucumber.js "$@"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd -P)"
+
+if [ "$(npm bin)" = "$SCRIPT_DIR" ]; then
+    if [ $# -eq 0 ] ; then
+        $(npm bin)/cucumber.js node_modules/sunrise-scenarios/features
+    else
+        $(npm bin)/cucumber.js "$@"
+    fi
+else
+    $(npm bin)/cucumber.js "$@"
+fi
+

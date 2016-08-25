@@ -23,6 +23,7 @@ let webdriverOptions = {
     port: port,
     outputDir: 'output',
     baseUrl: testingUrl,
+    restart: true,
     desiredCapabilities: {
         name: (process.env.TEST_NAME || 'Sunrise'),
         browserName: browserName

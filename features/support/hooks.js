@@ -36,6 +36,13 @@ module.exports = function hooks() {
                 : Promise.resolve())
 
                 .then(() => {
+                    if (!this.options.restart) {
+                        if (browser) {
+                            this.browser = browser;
+                        } else {
+                            this._startBrowser();
+                        }
+                    }
                     browser = this._before();
                     return browser;
                 }),
@@ -54,5 +61,9 @@ module.exports = function hooks() {
             return this._failed(scenario).then(() => { return this._after() });
         }
         return this._after();
+    });
+
+    this.AfterFeatures(function () {
+        return browser.end();
     });
 };

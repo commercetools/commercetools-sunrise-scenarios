@@ -67,15 +67,15 @@ function World() {
     };
 
     this._after = () => {
-        if (this.options.restart) return this.browser.end();
+        if (this.options.restart) return this._closeBrowser();
         this.debugSection('Session', 'cleaning cookies and localStorage');
         return this.browser.execute('localStorage.clear();').then(() => {
             return this.browser.deleteCookie();
         });
     };
 
-    this._afterSuite = () => {
-        if (!this.options.restart) return this.browser.end();
+    this._closeBrowser = () => {
+        return this.browser.end();
     };
 
     this._failed = (test) => {

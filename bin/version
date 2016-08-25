@@ -1,0 +1,5 @@
+#!/bin/bash -e
+
+echo "{
+  \"revision\": \"$(git rev-parse --short HEAD)\"
+}" > ./version.json

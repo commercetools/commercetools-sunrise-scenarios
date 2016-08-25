@@ -1,0 +1,42 @@
+{
+  "name": "sunrise-scenarios",
+  "version": "0.1.0",
+  "description": "Test suite for the CTP Sunrise application",
+  "scripts": {
+    "test": "./bin/features_run",
+    "test:remote": "NODE_ENV=remote cucumber.js",
+    "test:ci": "NODE_TLS_REJECT_UNAUTHORIZED=0 NODE_ENV=ci cucumber.js",
+    "test:local:chrome": "NODE_BROWSER=chrome ./bin/features_run",
+    "test:local:ci": "NODE_TLS_REJECT_UNAUTHORIZED=0 NODE_ENV=ci ./bin/features_run_docker"
+  },
+  "bin": {
+    "features_run": "./bin/features_run"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/commercetools/commercetools-sunrise-scenarios"
+  },
+  "bugs": {
+    "url": "https://github.com/commercetools/commercetools-sunrise-scenarios/issues",
+    "email": "support@sphere.io"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "colors": "^1.1.2",
+    "cucumber": "^1.2.1",
+    "cz-conventional-changelog": "^1.1.5",
+    "eslint": "^3.2.0",
+    "eslint-plugin-mocha": "^4.3.0",
+    "mocha": "^3.0.0",
+    "progress": "^1.1.8",
+    "selenium-standalone": "^5.5.0",
+    "validate-commit-msg": "^2.5.0",
+    "webdriverio": "^4.2.3"
+  },
+  "engines": {
+    "node": ">=4",
+    "npm": ">=2"
+  },
+  "config": {}
+}

@@ -1,0 +1,21 @@
+#!/bin/bash -e
+
+# Run tests with selenium running in a docker container
+
+before() {
+  echo "Ensure no selenium container is running"
+  docker stop seleniumff && docker rm seleniumff || true
+
+  echo "Start selenium firefox container in background..."
+  docker run --name seleniumff -p 4444:4444 -p 5900:5900 -d selenium/standalone-firefox-debug
+}
+
+after() {
+  echo "Stop selenium firefox container..."
+  docker stop seleniumff && docker rm seleniumff
+}
+
+before
+trap after EXIT
+
+HOST=$(docker-machine ip default) $(npm bin)/cucumber.js "$@"

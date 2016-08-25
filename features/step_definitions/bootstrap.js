@@ -114,7 +114,7 @@ module.exports = function bootstrap() {
     });
 
     this.Then(/^I see "([^"]*)" elements in "([^"]*)"$/, function (num, selector) {
-        return this.seeNumberOfElements(selector, num.toInteger());
+        return this.seeNumberOfElements(selector, parseInt(num));
     });
 
     this.Then(/^I see in current url "([^"]*)"$/, function (uri) {
@@ -149,12 +149,12 @@ module.exports = function bootstrap() {
         return this._withinEnd();
     });
 
-    this.Given(/^I scroll to "locator"$/, function (locator) {
+    this.Given(/^I scroll to "([^"]*)"$/, function (locator) {
         return this.scrollTo(locator);
     });
 
     this.Given(/^I scroll to "([^"]*)" with offset "([^"]*)" "([^"]*)"$/, function (locator, offsetX, offsetY) {
-        return this.scrollTo(locator, offsetX.toInteger(), offsetY.toInteger());
+        return this.scrollTo(locator, parseInt(offsetX), parseInt(offsetY));
     });
 
     this.Given(/^I move cursor to "([^"]*)"$/, function (locator) {
@@ -162,7 +162,7 @@ module.exports = function bootstrap() {
     });
 
     this.Given(/^I move cursor to "([^"]*)" with offset "([^"]*)" "([^"]*)"$/, function (locator, offsetX, offsetY) {
-        return this.moveCursorTo(locator, offsetX.toInteger(), offsetY.toInteger());
+        return this.moveCursorTo(locator, parseInt(offsetX), parseInt(offsetY));
     });
 
     this.When(/^I save a screenshot to "([^"]*)"$/, function (pathToFile) {
@@ -207,7 +207,7 @@ module.exports = function bootstrap() {
     });
 
     this.Given(/^I resize window to "([^"]*)" "([^"]*)"$/, function (width, height) {
-        return this.resizeWindow(width.toInteger(), height.toInteger());
+        return this.resizeWindow(parseInt(width), parseInt(height));
     });
 
     this.Given(/^I drag "([^"]*)" and drop to "([^"]*)"$/, function (srcElement, destElement) {
@@ -215,23 +215,23 @@ module.exports = function bootstrap() {
     });
 
     this.Given(/^I wait "([^"]*)" seconds$/, function (sec) {
-        return this.wait(sec.toInteger());
+        return this.wait(parseInt(sec));
     });
 
     this.Given(/^I wait "([^"]*)" seconds for element "([^"]*)"$/, function (sec, locator) {
-        return this.waitForElement(locator, sec.toInteger());
+        return this.waitForElement(locator, parseInt(sec));
     });
 
     this.Given(/^I wait "([^"]*)" seconds for text "([^"]*)"$/, function (sec, text) {
-        return this.waitForText(text, sec.toInteger());
+        return this.waitForText(text, parseInt(sec));
     });
 
     this.Given(/^I wait "([^"]*)" seconds for element "([^"]*)" to show$/, function (sec, locator) {
-        return this.waitForVisible(locator, sec.toInteger());
+        return this.waitForVisible(locator, parseInt(sec));
     });
 
     this.Given(/^I wait "([^"]*)" seconds for element "([^"]*)" to hide$/, function (sec, locator) {
-        return this.waitToHide(locator, sec.toInteger());
+        return this.waitToHide(locator, parseInt(sec));
     });
 
     this.Given(/^I switch to "([^"]*)"$/, function (locator) {

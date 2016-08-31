@@ -13,4 +13,3 @@ script:
 env:
   matrix:
   - BASE_URL=http://sunrise.commercetools.de TEST_NAME="Sunrise Staging"
-  - BASE_URL=http://sunrise.commercetools.com TEST_NAME="Sunrise Production"

@@ -550,15 +550,16 @@ function World() {
     /**
      * {{> ../webapi/executeScript }}
      */
-    this.executeScript = (fn) => {
-        return this.browser.execute.apply(this.browser, arguments);
+    this.executeScript = (...args) => {
+
+        return this.browser.execute.apply(this.browser, args);
     };
 
     /**
      * {{> ../webapi/executeAsyncScript }}
      */
-    this.executeAsyncScript = (fn) => {
-        return this.browser.executeAsync.apply(this.browser, arguments);
+    this.executeAsyncScript = (...args) => {
+        return this.browser.executeAsync.apply(this.browser, args);
     };
 
     /**

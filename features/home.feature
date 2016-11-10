@@ -12,3 +12,7 @@ Feature: home page
     And within ".jumbotron"
     And I see "NEW"
     And end within
+
+  @WIP
+  Scenario: test tags
+    Given I navigate to "/"

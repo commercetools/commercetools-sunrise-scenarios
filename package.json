@@ -4,13 +4,14 @@
   "description": "Test suite for the CTP Sunrise application",
   "scripts": {
     "test": "./bin/features_run",
-    "test:remote": "NODE_ENV=remote cucumber.js",
-    "test:ci": "NODE_TLS_REJECT_UNAUTHORIZED=0 NODE_ENV=ci cucumber.js",
+    "test:remote": "NODE_ENV=remote cucumber-js",
+    "test:ci": "NODE_TLS_REJECT_UNAUTHORIZED=0 NODE_ENV=ci cucumber-js",
     "test:local:chrome": "NODE_BROWSER=chrome ./bin/features_run",
     "test:local:ci": "NODE_TLS_REJECT_UNAUTHORIZED=0 NODE_ENV=ci ./bin/features_run_docker"
   },
   "bin": {
-    "features_run": "./bin/features_run"
+    "features_run": "./bin/features_run",
+    "cucumber-js": "./bin/cucumber.js"
   },
   "license": "MIT",
   "repository": {

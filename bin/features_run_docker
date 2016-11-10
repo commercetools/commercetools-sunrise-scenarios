@@ -18,4 +18,4 @@ after() {
 before
 trap after EXIT
 
-HOST=$(docker-machine ip default) $(npm bin)/cucumber.js "$@"
+HOST=$(docker-machine ip default) $(npm bin)/cucumber-js "$@"

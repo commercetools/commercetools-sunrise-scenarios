@@ -3,6 +3,7 @@
   "version": "0.1.5",
   "description": "Test suite for the CTP Sunrise application",
   "scripts": {
+    "pretest": "selenium-standalone install",
     "test": "./bin/features_run",
     "test:remote": "NODE_ENV=remote cucumber-js",
     "test:ci": "NODE_TLS_REJECT_UNAUTHORIZED=0 NODE_ENV=ci cucumber-js",

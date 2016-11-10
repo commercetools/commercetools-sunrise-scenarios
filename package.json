@@ -1,6 +1,6 @@
 {
   "name": "sunrise-scenarios",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Test suite for the CTP Sunrise application",
   "scripts": {
     "test": "./bin/features_run",
